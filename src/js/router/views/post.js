@@ -46,17 +46,25 @@ async function renderSinglePost() {
         }
 
         const postContainer = document.getElementById('singlePostContainer');
+        
+        // Insert HTML with the correct classes
         postContainer.innerHTML = `
-            <h1>${post.title}</h1>
-            <p>${post.body}</p>
-            ${post.media ? `<img src="${post.media.url}" alt="${post.media.alt || 'Media'}">` : ''}
-            <button id="editButton">Edit</button> <!-- Add an Edit button -->
+            <h1 class="post-title">${post.title}</h1>
+            <div class="post-image-container position-relative">
+                <!-- Edit Button -->
+                <button id="editButton" class="btn btn-primary edit-button position-absolute top-0 end-0 m-3">Edit</button>
+                <!-- Dynamically insert the image with proper styling -->
+                ${post.media ? `<img id="post-image" class="post-image img-fluid" src="${post.media.url}" alt="${post.media.alt || 'Media'}">` : ''}
+            </div>
+            <div id="post-body" class="post-body mt-4">
+                <p>${post.body}</p>
+            </div>
         `;
 
         document.getElementById('editButton').addEventListener('click', () => {
             window.location.href = `/post/edit/?id=${postId}`; 
         });
-        
+
     } catch (error) {
         console.error('Error fetching single post:', error);
         document.getElementById('singlePostContainer').innerHTML = '<p>Failed to load the post.</p>';

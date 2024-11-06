@@ -1,0 +1,45 @@
+// header.scss
+
+
+
+.app-header {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #f8f9fa;
+    border-right: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .app-header .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .app-header .nav-pills .nav-link {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .app-header .nav-link i {
+    margin-right: 8px; 
+  }
+
+  .search-container {
+    position: relative;
+  }
+  
+  #search-form {
+    transition: all 0.3s ease;
+  }
+  
+  #search-form.d-none {
+    display: none;
+  }
+

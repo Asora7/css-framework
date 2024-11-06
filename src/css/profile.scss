@@ -1,0 +1,10 @@
+.card-img-top {
+    width: 100%;        /* Ensures the image spans the width of the card */
+    height: 200px;      /* Sets a fixed height for consistency */
+    object-fit: cover;  /* Crops the image to fit the dimensions neatly */
+}
+
+.profile-stat h5 {
+    font-size: small;
+    margin-right: 1rem;
+}
