@@ -17,38 +17,32 @@ async function renderUserPosts() {
             throw new Error('Fetched posts is not an array');
         }
 
-        // Clear the container to ensure it starts empty
         postContainer.innerHTML = '';
 
-        // Check if there are posts to display
         if (posts.length === 0) {
             postContainer.innerHTML = '<p>No posts found.</p>';
             return;
         }
 
-        // Loop through each post and create the layout dynamically
         posts.forEach(post => {
             const postCol = document.createElement('div');
-            postCol.classList.add('col'); // Bootstrap column class
+            postCol.classList.add('col'); 
 
-            // Create the link element wrapping the card
             const postLink = document.createElement('a');
-            postLink.href = `/post/view/?id=${post.id}`; // URL for the single post page
-            postLink.classList.add('text-decoration-none'); // Optional: remove underline
+            postLink.href = `/post/view/?id=${post.id}`; 
+            postLink.classList.add('text-decoration-none'); 
 
             const card = document.createElement('div');
-            card.classList.add('card', 'h-100'); // Bootstrap card with full height
+            card.classList.add('card', 'h-100'); 
 
-            // Create the media/image section if there is a media URL
             if (post.media) {
                 const postMedia = document.createElement('img');
                 postMedia.src = post.media.url;
                 postMedia.alt = post.media.alt || 'Media';
-                postMedia.classList.add('card-img-top'); // Bootstrap image class for card top
+                postMedia.classList.add('card-img-top'); 
                 card.appendChild(postMedia);
             }
 
-            // Create the card body section
             const cardBody = document.createElement('div');
             cardBody.classList.add('card-body');
 
@@ -56,19 +50,14 @@ async function renderUserPosts() {
             postTitle.classList.add('card-title');
             postTitle.textContent = post.title;
 
-            // Append title to card body
             cardBody.appendChild(postTitle);
 
-            // Append card body to card
             card.appendChild(cardBody);
 
-            // Append the card to the link, making the whole card clickable
             postLink.appendChild(card);
 
-            // Append the link (which now contains the card) to the column
             postCol.appendChild(postLink);
 
-            // Append the column to the container
             postContainer.appendChild(postCol);
         });
     } catch (error) {

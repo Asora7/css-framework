@@ -8,6 +8,7 @@ import { logout } from '../auth/logout.js';
  * @function
  * @returns {void}
  */
+
 export function createHeader() {
   const token = localStorage.getItem('token'); 
 
@@ -19,38 +20,25 @@ export function createHeader() {
   header.classList.add('app-header'); 
 
   header.innerHTML = `
-  <nav class="navbar navbar-light flex-column">
-    <a href="/" class="navbar-brand mb-4">Connectly</a>
-    <ul class="navbar-nav flex-column nav-pills">
+  <nav class="navbar navbar-light d-flex justify-content-between align-items-center p-3">
+    <a href="/" class="navbar-brand">Connectly</a>
+    <ul class="navbar-nav d-flex m-0">
       <li class="nav-item">
-        <a class="nav-link" href="/"><i class="bi bi-house"></i> Home</a>
+        <a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/profile/"><i class="bi bi-person"></i> Profile</a>
+        <a class="nav-link" href="/profile/"><i class="fas fa-user"></i>Profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/post/create/"><i class="bi bi-plus-square"></i> New Post</a>
+        <a class="nav-link" href="/post/create/"><i class="fas fa-plus"></i>New Post</a>
       </li>
     </ul>
-    
-    <form class="form-inline mt-4 mb-3" id="search-form">
-      <input 
-        class="form-control mb-2" 
-        type="search" 
-        placeholder="Search" 
-        aria-label="Search" 
-        required
-      >
-    </form>
-
-    <button id="logout" class="btn btn-danger w-100 mt-auto">Logout</button>
+    <button id="logout" class="btn btn-danger">Logout</button>
   </nav>
 `;
 
-
   document.body.prepend(header); 
 
-  // Logout functionality
   const logoutButton = document.getElementById('logout');
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
@@ -60,14 +48,5 @@ export function createHeader() {
       }
     });
   }
-
-  // Search functionality
-  const searchForm = document.getElementById('search-form');
-  if (searchForm) {
-    searchForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const query = searchForm.querySelector('input').value;
-      window.location.href = `/search/?query=${encodeURIComponent(query)}`;
-    });
-  }
 }
+

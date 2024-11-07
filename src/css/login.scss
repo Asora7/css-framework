@@ -1,5 +1,9 @@
-  .bg-image {
-    background-size: cover;
-    background-position: center;
-    min-height: 600px; 
+.login-page {
+  margin-left: 30%;
+}
+
+@media (max-width: 780px) {
+  .login-page {
+      margin-left: 0;
   }
+}

@@ -46,8 +46,7 @@ async function renderSinglePost() {
         }
 
         const postContainer = document.getElementById('singlePostContainer');
-        
-        // Insert HTML with the correct classes
+
         postContainer.innerHTML = `
             <h1 class="post-title">${post.title}</h1>
             <div class="post-image-container position-relative">

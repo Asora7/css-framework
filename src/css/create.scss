@@ -1,15 +1,18 @@
 .create-post-page #postContainer {
     display: flex;
-    justify-content: center;   /* Centers the content horizontally */
-    align-items: center;       /* Centers the content vertically */
-    flex-direction: column;    /* Stacks the image and other content vertically */
-    margin-top: 20px;          /* Adds space between the form and the preview */
-    text-align: center;        /* Ensures the content (like text) is centered */
+    justify-content: center;   
+    align-items: center;       
+    flex-direction: column;    
+    margin-top: 20px;          
+    text-align: center;   
 }
 
 .create-post-page #postContainer img {
-    max-width: 100%;      /* Ensures the image scales responsively */
-    height: auto;         /* Keeps the aspect ratio of the image intact */
-    max-height: 200px;    /* Limits the height of the image */
-    margin-top: 20px;     /* Adds some space between the form and the image */
+    max-width: 100%;  
+    height: auto;  
+    max-height: 200px;
+    margin-top: 20px;
 }
+
+
+

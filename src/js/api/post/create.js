@@ -29,11 +29,11 @@ export async function createPost({ title, body, tags, media }) {
         }
 
         const data = await response.json();
-        console.log('Post created successfully:', data);  // Keep for success logs
+        console.log('Post created successfully:', data); 
         return data;  
 
     } catch (error) {
-        console.error('Error during post creation:', error);  // Keep for error logging
+        console.error('Error during post creation:', error);  
         return null;  
     }
 }

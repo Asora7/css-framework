@@ -103,10 +103,10 @@ async function renderPostForEditing(postId) {
  * @param {string} post.media.url - The URL of the media.
  * @param {string} [post.media.alt] - The alt text for the media.
  */
-
 function displayUpdatedPost(post) {
-    const postContainer = document.createElement('div');
-    postContainer.classList.add('updated-post');
+    const postContainer = document.getElementById('postContainer'); 
+
+    postContainer.innerHTML = '';
 
     const postTitle = document.createElement('h2');
     postTitle.textContent = post.title;
@@ -117,14 +117,22 @@ function displayUpdatedPost(post) {
     if (post.media) {
         const postMedia = document.createElement('img');
         postMedia.src = post.media.url;
-        postMedia.alt = post.media.alt || 'Media';
+        postMedia.alt = post.media.alt || 'Post Media';
         postContainer.appendChild(postMedia);
     }
 
     postContainer.appendChild(postTitle);
     postContainer.appendChild(postBody);
 
-    document.body.appendChild(postContainer);
+    const viewPostButton = document.createElement('button');
+    viewPostButton.textContent = 'View in profile';
+    viewPostButton.classList.add('view-post-btn');
+
+    viewPostButton.addEventListener('click', () => {
+        window.location.href = `/profile/`;  
+    });
+
+    postContainer.appendChild(viewPostButton);
 }
 
 if (window.location.pathname.includes('/post/edit/')) {
@@ -136,3 +144,4 @@ if (window.location.pathname.includes('/post/edit/')) {
         renderPostForEditing(postId);
     }
 }
+

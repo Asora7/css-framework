@@ -11,23 +11,18 @@
     <div class="container my-5">
         <h1 class="text-center mb-4">Create Post</h1>
         <form name="createPost" onsubmit="onCreatePost(event)">
-            <!-- Title Input -->
             <div class="mb-3">
                 <input type="text" name="title" class="form-control" placeholder="Post Title" required>
             </div>
-            <!-- Body Textarea -->
             <div class="mb-3">
                 <textarea name="body" class="form-control" placeholder="Write your post here..." rows="4" required></textarea>
             </div>
-            <!-- Media URL Input -->
             <div class="mb-3">
                 <input type="text" name="media" class="form-control" placeholder="Media URL (optional)">
             </div>
-            <!-- Tags Input -->
             <div class="mb-3">
                 <input type="text" name="tags" class="form-control" placeholder="Tags (optional, comma-separated)">
             </div>
-            <!-- Create Post Button -->
             <button id="createPostButton" type="submit" class="btn btn-primary w-100">Create Post</button>
         </form>
     </div>

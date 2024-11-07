@@ -17,6 +17,9 @@ import './js/ui/post/editPost.js';
 
 import { createHeader } from './js/ui/global/header.js'; // Import the header
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 /**
  * Initializes the application by creating the header and 
  * setting up the router based on the current URL pathname.
