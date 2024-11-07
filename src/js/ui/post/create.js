@@ -1,4 +1,4 @@
-import { createPost } from "../../api/post/create.js";
+import { createPost } from '../../api/post/create.js';
 
 /**
  * Handles the form submission for creating a post.
@@ -11,30 +11,36 @@ import { createPost } from "../../api/post/create.js";
  * @returns {Promise<void>} A promise that resolves when the post creation and UI update are complete.
  */
 export async function onCreatePost(event) {
-    event.preventDefault();  
+  event.preventDefault();
 
-    const createPostButton = document.getElementById('createPostButton');
+  const createPostButton = document.getElementById('createPostButton');
 
-    const formData = new FormData(event.target);  
-    const postData = {
-        title: formData.get('title'),
-        body: formData.get('body'),
-        tags: formData.get('tags') ? formData.get('tags').split(',').map(tag => tag.trim()) : undefined,
-        media: formData.get('media') ? { url: formData.get('media'), alt: '' } : null,
-    };
+  const formData = new FormData(event.target);
+  const postData = {
+    title: formData.get('title'),
+    body: formData.get('body'),
+    tags: formData.get('tags')
+      ? formData
+          .get('tags')
+          .split(',')
+          .map((tag) => tag.trim())
+      : undefined,
+    media: formData.get('media')
+      ? { url: formData.get('media'), alt: '' }
+      : null,
+  };
 
-    const createdPost = await createPost(postData);  
+  const createdPost = await createPost(postData);
 
-    if (createdPost) {
+  if (createdPost) {
+    localStorage.setItem('latestPost', JSON.stringify(createdPost.data));
+    displayCreatedPost(createdPost);
 
-        localStorage.setItem('latestPost', JSON.stringify(createdPost.data));
-        displayCreatedPost(createdPost);  
-
-        createPostButton.textContent = 'Post Created';
-        createPostButton.classList.add('btn-secondary'); 
-        createPostButton.classList.remove('btn-primary'); 
-        createPostButton.disabled = true; 
-    }
+    createPostButton.textContent = 'Post Created';
+    createPostButton.classList.add('btn-secondary');
+    createPostButton.classList.remove('btn-primary');
+    createPostButton.disabled = true;
+  }
 }
 
 /**
@@ -54,42 +60,42 @@ export async function onCreatePost(event) {
  * @returns {void}
  */
 function displayCreatedPost(post) {
-    const postData = post.data;  
+  const postData = post.data;
 
-    const postContainer = document.getElementById('postContainer');
-    
-    const postElement = document.createElement('div');
-    postElement.classList.add('post');
+  const postContainer = document.getElementById('postContainer');
 
-    const postTitle = document.createElement('h2');
-    postTitle.textContent = postData.title;
+  const postElement = document.createElement('div');
+  postElement.classList.add('post');
 
-    const postBody = document.createElement('p');
-    postBody.textContent = postData.body;
+  const postTitle = document.createElement('h2');
+  postTitle.textContent = postData.title;
 
-    if (postData.media) {
-        const postMedia = document.createElement('img');
-        postMedia.src = postData.media.url;
-        postMedia.alt = postData.media.alt || 'Media';
-        postElement.appendChild(postMedia);
-    }
+  const postBody = document.createElement('p');
+  postBody.textContent = postData.body;
 
-    if (postData.tags && postData.tags.length > 0) {
-        const tagList = document.createElement('p');
-        tagList.textContent = 'Tags: ' + postData.tags.join(', ');
-        postElement.appendChild(tagList);
-    }
+  if (postData.media) {
+    const postMedia = document.createElement('img');
+    postMedia.src = postData.media.url;
+    postMedia.alt = postData.media.alt || 'Media';
+    postElement.appendChild(postMedia);
+  }
 
-    postElement.appendChild(postTitle);
-    postElement.appendChild(postBody);
+  if (postData.tags && postData.tags.length > 0) {
+    const tagList = document.createElement('p');
+    tagList.textContent = 'Tags: ' + postData.tags.join(', ');
+    postElement.appendChild(tagList);
+  }
 
-    const viewProfileButton = document.createElement('button');
-    viewProfileButton.textContent = 'View in Profile';
-    viewProfileButton.addEventListener('click', () => {
-        window.location.href = '/profile/';
-    });
+  postElement.appendChild(postTitle);
+  postElement.appendChild(postBody);
 
-    postElement.appendChild(viewProfileButton);
+  const viewProfileButton = document.createElement('button');
+  viewProfileButton.textContent = 'View in Profile';
+  viewProfileButton.addEventListener('click', () => {
+    window.location.href = '/profile/';
+  });
 
-    postContainer.appendChild(postElement);
+  postElement.appendChild(viewProfileButton);
+
+  postContainer.appendChild(postElement);
 }
