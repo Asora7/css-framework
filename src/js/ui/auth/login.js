@@ -22,8 +22,5 @@ export async function onLogin(event) {
 // Ensure this part is outside the function so the event listener is attached when the script is loaded
 const loginForm = document.forms['login'];
 if (loginForm) {
-  console.log("Login form found and event listener attached.");
   loginForm.addEventListener('submit', onLogin); // Add the event listener
-} else {
-  console.error('Login form not found.');
-}
+} 

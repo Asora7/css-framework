@@ -22,7 +22,6 @@ export async function loginUser(userData) {
     });
 
     const data = await response.json();
-    console.log("API response data:", data);
 
     if (!response.ok) {
       throw new Error(`Login failed: ${data.errors[0].message}`);
@@ -30,7 +29,6 @@ export async function loginUser(userData) {
 
     if (data.data.accessToken) {
       localStorage.setItem('token', data.data.accessToken);
-      console.log("Token stored in localStorage");
 
       if (data.data.name) {
         localStorage.setItem('username', data.data.name);
