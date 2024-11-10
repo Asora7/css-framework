@@ -18,7 +18,7 @@
           <div class="text-center mb-4">
             <h2>Connectly</h2>
           </div>
-          <form name="login">
+          <form id="login-form">
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input
@@ -46,14 +46,26 @@
             </button>
 
             <div class="text-center">
-              <small
-                >Don't have an account?
-                <a href="/auth/register/">Register here</a></small
-              >
+              <small>
+                Don't have an account?
+                <a href="/auth/register/">Register here</a>
+              </small>
             </div>
           </form>
         </div>
       </div>
     </div>
+
+    <script>
+      // Handle form submission
+      document.getElementById('login-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent default form submission (which would use GET)
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        
+        // Call the loginUser function with email and password
+        loginUser({ email, password });
+      });
+    </script>
   </body>
 </html>

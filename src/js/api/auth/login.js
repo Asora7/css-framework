@@ -17,8 +17,11 @@ export async function loginUser(userData) {
   try {
     const response = await fetch(API_AUTH_LOGIN, {
       method: 'POST',
-      headers: getHeaders(),
-      body: JSON.stringify(userData),
+      headers: {
+        ...getHeaders(),
+        'Content-Type': 'application/json', // Ensure the content is JSON
+      },
+      body: JSON.stringify(userData), // Send data in the body of the request
     });
 
     const data = await response.json();
@@ -34,12 +37,13 @@ export async function loginUser(userData) {
         localStorage.setItem('username', data.data.name);
       }
 
-      window.location.href = '/';
+      window.location.href = '/'; // Redirect to home after successful login
     }
 
     return data;
   } catch (error) {
     console.error('Error during login:', error);
-    alert(error.message);
+    alert(error.message); // Display error message
   }
 }
+
