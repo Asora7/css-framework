@@ -56,16 +56,18 @@
       </div>
     </div>
 
-    <script>
-      // Handle form submission
+    <script type="module">
+      import { loginUser } from '../../src/js/api/auth/login.js';  // Adjust path if neededa
+    
       document.getElementById('login-form').addEventListener('submit', function (e) {
         e.preventDefault(); // Prevent default form submission (which would use GET)
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        
+    
         // Call the loginUser function with email and password
         loginUser({ email, password });
       });
     </script>
+    
   </body>
 </html>
