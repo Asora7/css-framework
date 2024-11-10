@@ -7,13 +7,10 @@ import { loginUser } from '../../api/auth/login.js';
  * @param {Event} event - The event object representing the form submission event.
  * @returns {Promise<void>} A promise that resolves when the login process is complete.
  */
-
 export async function onLogin(event) {
   event.preventDefault();
 
-  const loginForm = document.forms['login'];
-  const formData = new FormData(loginForm);
-
+  const formData = new FormData(event.target); 
   const userData = {
     email: formData.get('email'),
     password: formData.get('password'),
@@ -22,7 +19,4 @@ export async function onLogin(event) {
   await loginUser(userData);
 }
 
-const loginForm = document.forms['login'];
-if (loginForm) {
-  loginForm.addEventListener('submit', onLogin);
-}
+document.forms['login']?.addEventListener('submit', onLogin);
