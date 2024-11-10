@@ -22,6 +22,7 @@ export async function onLogin(event) {
     await loginUser(userData);  // Call the loginUser function from the API
   } catch (error) {
     console.error("Login error:", error);
+    alert(error.message);  // Optionally display an error message to the user
   }
 }
 
